@@ -98,6 +98,22 @@ async function waitForInstanceRunning(ec2InstanceId) {
   }
 }
 
+async function getSecretsManagerValue(secretsManagerId) {
+  const secretsManager = new AWS.SecretsManager();
+
+  const params = {
+    SecretId: secretsManagerId
+  };
+
+  try {
+    const result = await secretsManager.getSecretValue(params).promise();
+    return JSON.parse(result.SecretString).password;
+  } catch (error) {
+    core.error(`AWS Secrets Manager ${secretsManagerId} error`);
+    throw error;
+  }
+}
+
 module.exports = {
   startEc2Instance,
   terminateEc2Instance,

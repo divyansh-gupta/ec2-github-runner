@@ -13,7 +13,7 @@ inputs:
     required: true
   github-token:
     description: >-
-      GitHub Personal Access Token with the 'repo' scope assigned.
+      Specifies the AWS Secrets Manager Arn or Friendly that contains the GitHub Personal Access Token with the 'repo' scope assigned.
     required: true
   ec2-image-id:
     description: >-

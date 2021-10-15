@@ -1,3 +1,4 @@
+const aws = require('./aws');
 const core = require('@actions/core');
 const github = require('@actions/github');
 
@@ -56,6 +57,10 @@ class Config {
     } else {
       throw new Error('Wrong mode. Allowed values: start, stop.');
     }
+  }
+
+  async populateGithubToken() {
+    this.input.githubToken = await aws.getSecretsManagerValue(this.input.githubToken);
   }
 
   generateUniqueLabel() {
