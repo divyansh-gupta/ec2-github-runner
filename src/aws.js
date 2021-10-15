@@ -118,4 +118,5 @@ module.exports = {
   startEc2Instance,
   terminateEc2Instance,
   waitForInstanceRunning,
+  getSecretsManagerValue
 };
