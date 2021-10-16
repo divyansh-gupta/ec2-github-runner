@@ -93,9 +93,9 @@ async function getSecretsManagerValue(secretsManagerId) {
 
   try {
     const result = await secretsManager.getSecretValue(params).promise();
-    return JSON.parse(result.SecretString).password;
+    return result.SecretString;
   } catch (error) {
-    core.error(`AWS Secrets Manager ${secretsManagerId} error`);
+    core.error(`Error retrieving AWS Secrets Manager value: ${secretsManagerId}`);
     throw error;
   }
 }
