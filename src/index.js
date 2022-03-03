@@ -19,8 +19,9 @@ async function start() {
 }
 
 async function stop() {
-  await aws.terminateEc2Instance(config.input.ec2InstanceId);
+  await config.populateGithubToken();
   await gh.removeRunner();
+  await aws.terminateEc2Instance(config.input.ec2InstanceId);
 }
 
 (async function () {
